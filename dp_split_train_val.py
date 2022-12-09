@@ -20,12 +20,11 @@ class data_prep:
         return np.asarray(files)
 
     def get_files_from_folder_shuffled(self, path):
-        #np.random.seed(3) 
+        np.random.seed(42) 
 
         files = sorted(os.listdir(path))
         files = np.asarray(files)
         np.random.shuffle(files)
-        print(files[:50])
         return files
 
     def main(self):
