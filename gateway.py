@@ -24,7 +24,7 @@ preprocessor = create_preprocessor('xception', target_size=(299, 299))
 def prepare_request(X):
     pb_request = predict_pb2.PredictRequest()
 
-    pb_request.model_spec.name = 'converted_model'
+    pb_request.model_spec.name = 'kitchenware-model'
     pb_request.model_spec.signature_name = 'serving_default'
 
     pb_request.inputs['input_35'].CopyFrom(np_to_protobuf(X))
@@ -62,13 +62,13 @@ def predict_endpoint():
 
 
 if __name__ == '__main__':
-    # url = 'http://bit.ly/mlbookcamp-pants'
+    # url = 'https://raw.githubusercontent.com/ChanTheDataExplorer/kitchenware-classification-project/main/testing_images/0000.jpg'
     # response = predict(url)
     # print(response)
     app.run(debug=True, host='0.0.0.0', port=9696)
 
 
-# Logic for outputting the model only
+# Logic for outputting the label only
 '''
 pred = list(pb_response.outputs['dense_26'].float_val)
 

@@ -3,3 +3,4 @@ dataset/
 .venv
 *.ipynb_checkpoints
 xception_v1_08_0.890.h5
+*pycache*
