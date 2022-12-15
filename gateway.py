@@ -62,10 +62,10 @@ def predict_endpoint():
 
 
 if __name__ == '__main__':
-    # url = 'https://raw.githubusercontent.com/ChanTheDataExplorer/kitchenware-classification-project/main/testing_images/0000.jpg'
-    # response = predict(url)
-    # print(response)
-    app.run(debug=True, host='0.0.0.0', port=9696)
+    url = 'https://raw.githubusercontent.com/ChanTheDataExplorer/kitchenware-classification-project/main/testing_images/0000.jpg'
+    response = predict(url)
+    print(response)
+    # app.run(debug=True, host='0.0.0.0', port=9696)
 
 
 # Logic for outputting the label only

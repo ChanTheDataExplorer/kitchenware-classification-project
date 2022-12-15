@@ -6,11 +6,18 @@ class sort_img:
     def __init__(self):
         # Set the directories of the source images, target sorted images, and target test images
         self.dataset_dir = './dataset'
-        self.raw_img_dir = './dataset/images'
+        self.raw_img_dir = './dataset/deduped_images'
         self.sorted_img_dir = './dataset/sorted_images'
         self.test_img_dir = './dataset/sorted_test'
     
     def main(self):
+        # Get the duplicate images
+        dup_list = open("duplicates.txt").read().splitlines()
+        print(dup_list)
+
+        # Remove the sorted_images and the sorted_test
+        shutil.rmtree(self.sorted_img_dir)
+        shutil.rmtree(self.test_img_dir)
 
         ## TRAINING IMAGES
         # Get the location information to be used for setting the sorted images
@@ -21,15 +28,17 @@ class sort_img:
 
         # Move all the training images
         for file, label in sorted_img_loc.items():
-            
-            src = self.raw_img_dir+ '/' + file
-            dst = self.sorted_img_dir  + '/' + label + '/' + file
-            
-            if os.path.exists(self.sorted_img_dir   + '/' + label):
-                shutil.copy(src, dst)
+            if file in dup_list:
+                print(f'File {file} is in the duplicates list.')
             else:
-                os.makedirs(self.sorted_img_dir + '/' + label)
-                shutil.copy(src, dst)
+                src = self.raw_img_dir+ '/' + file
+                dst = self.sorted_img_dir  + '/' + label + '/' + file
+                
+                if os.path.exists(self.sorted_img_dir   + '/' + label):
+                        shutil.copy(src, dst)
+                else:
+                    os.makedirs(self.sorted_img_dir + '/' + label)
+                    shutil.copy(src, dst)
 
         ## TEST IMAGES
         # Get the location information to be used for setting the test images
@@ -39,14 +48,17 @@ class sort_img:
 
         # Move all the test images
         for file in test_list:
-            src = self.raw_img_dir+ '/' + file
-            dst = self.test_img_dir + '/' + file
-            
-            if os.path.exists(self.test_img_dir):
-                shutil.copy(src, dst)
+            if file in dup_list:
+                print(f'File {file} is in the duplicates list.')
             else:
-                os.makedirs(self.test_img_dir)
-                shutil.copy(src, dst)
+                src = self.raw_img_dir+ '/' + file
+                dst = self.test_img_dir + '/' + file
+                
+                if os.path.exists(self.test_img_dir):
+                    shutil.copy(src, dst)
+                else:
+                    os.makedirs(self.test_img_dir)
+                    shutil.copy(src, dst)
 
 if __name__ == "__main__":
   a = sort_img()

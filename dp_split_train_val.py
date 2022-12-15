@@ -9,7 +9,7 @@ class data_prep:
 
         # Set the directories of the source images, target sorted images, and target val images
         self.dataset_dir = './dataset'
-        self.raw_img_dir = './dataset/images'
+        self.raw_img_dir = './dataset/deduped_images'
         self.sorted_img_dir = './dataset/sorted_images'
         self.sorted_img_train = './dataset/sorted_images_train'
         self.sorted_img_val = './dataset/sorted_images_val'

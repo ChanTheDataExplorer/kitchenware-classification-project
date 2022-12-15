@@ -1,0 +1,33 @@
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:ap-southeast-1:560762403195:repository/kitchenware-model",
+        "registryId": "560762403195",
+        "repositoryName": "kitchenware-model",
+        "repositoryUri": "560762403195.dkr.ecr.ap-southeast-1.amazonaws.com/kitchenware-model",
+        "createdAt": "2022-12-15T21:20:04+08:00",
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": {
+            "scanOnPush": false
+        },
+        "encryptionConfiguration": {
+            "encryptionType": "AES256"
+        }
+    }
+}
+
+
+aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 560762403195.dkr.ecr.ap-southeast-1.amazonaws.com
+
+## MODEL
+560762403195.dkr.ecr.ap-southeast-1.amazonaws.com/kitchenware-model:model-001
+
+docker tag kitchenware-model:xception_v2 560762403195.dkr.ecr.ap-southeast-1.amazonaws.com/kitchenware-model:model-001
+
+docker push 560762403195.dkr.ecr.ap-southeast-1.amazonaws.com/kitchenware-model:model-001
+
+## GATEWAY
+560762403195.dkr.ecr.ap-southeast-1.amazonaws.com/kitchenware-model:model-001
+
+docker tag kitchenware-model:xception_v2 560762403195.dkr.ecr.ap-southeast-1.amazonaws.com/kitchenware-model:model-001
+
+docker push 560762403195.dkr.ecr.ap-southeast-1.amazonaws.com/kitchenware-model:model-001
