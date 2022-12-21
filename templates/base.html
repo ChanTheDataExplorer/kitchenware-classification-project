@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchenware Classification</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Kitchenware Classification</h1>
+
+        <form class="ui form" action="/predict" method="post">
+            <div class="field">
+                <label>Enter image url here</label>
+                <input type="text" name="url" placeholder="Enter image url..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Predict</button>
+        </form>
+
+        <hr>
+        
+        {% set url=url or "https://github.com/ChanTheDataExplorer/mlzoomcamp_capstone1_chan/blob/main/docu/images/sample_images.png?raw=true" %}
+        {% set pred_label=pred_label or None %}
+        {% set pred_list=pred_list or None %}
+
+        {{ pred_label}}<br>
+        {{ pred_list }}<br>
+
+        <div style="max-height: 100px" >
+            <img src="{{ url }}" style="max-height:100%;" />
+        </div>
+        
+
+    </div>
+</body>
+
+</html>
